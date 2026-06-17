@@ -1,0 +1,34 @@
+# PP_ERROR_LOG
+
+> This table contains information regarding the failure of a power plan to sign.
+
+**Description:** Power Plans Error Log  
+**Table type:** ACTIVITY  
+**Primary key:** _(not published — see note)_  
+**Columns:** 10
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `ERROR_TYPE_FLAG` | DOUBLE | NOT NULL |  | The type of failure that has occurred |
+| 2 | `LONG_TEXT_ID` | DOUBLE | NOT NULL | FK→ | The id of the long blob containing the error message |
+| 3 | `PATHWAY_ID` | DOUBLE | NOT NULL |  | The phase for which the error occurred during processing |
+| 4 | `PP_ERROR_LOG_ID` | DOUBLE | NOT NULL |  | Unique generated number that identifies a single row on the pp_error_log table. |
+| 5 | `PW_GROUP_NBR` | DOUBLE | NOT NULL |  | The id of the power plan |
+| 6 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. |
+| 7 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. |
+| 8 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. |
+| 9 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. |
+| 10 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Joins out — this table references (published FKs)
+
+| Column | → References | Parent column |
+|--------|--------------|---------------|
+| `LONG_TEXT_ID` | [LONG_TEXT](LONG_TEXT.md) | `LONG_TEXT_ID` |
+

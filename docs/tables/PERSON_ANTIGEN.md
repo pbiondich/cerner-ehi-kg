@@ -1,0 +1,49 @@
+# PERSON_ANTIGEN
+
+> Contains a record of every antigen result performed and verified on a person.
+
+**Description:** Person Antigen  
+**Table type:** ACTIVITY  
+**Primary key:** _(not published — see note)_  
+**Columns:** 21
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `ACTIVE_IND` | DOUBLE |  |  | The table row is active or inactive. A row is generally active unless it is in an inactive state such as logically deleted, combined away, pending purge, etc. |
+| 2 | `ACTIVE_STATUS_CD` | DOUBLE | NOT NULL |  | Indicates the status of the row itself (not the data in the row) such as active, inactive, combined away, pending purge, etc. |
+| 3 | `ACTIVE_STATUS_DT_TM` | DATETIME |  |  | The date and time that the active_status_cd was set. |
+| 4 | `ACTIVE_STATUS_PRSNL_ID` | DOUBLE | NOT NULL |  | The person who caused the active_status_cd to be set or change. |
+| 5 | `ANTIGEN_CD` | DOUBLE | NOT NULL |  | The antigen identified in a person's blood, confirmed through testing (ex. "Fya negative", "Kell negative", etc.) |
+| 6 | `BB_RESULT_ID` | DOUBLE | NOT NULL |  | An internal system-assigned number (but not a primary key to any table). Since multiple instances of a procedure can be resulted on the same patient, same accession, and same control cell, antibody, or antigen, the BB_RESULT_ID is used to make these instances unique. |
+| 7 | `CONTRIBUTOR_SYSTEM_CD` | DOUBLE | NOT NULL |  | Contributor system identifies the source feed of data from which a row was populated. This is mainly used to determine how to update a set of data that may have originated from more than one source feed. |
+| 8 | `ENCNTR_ID` | DOUBLE | NOT NULL | FK→ | This is the value of the unique primary identifier of the encounter table. It is an internal system assigned number. |
+| 9 | `PERSON_ANTIGEN_ID` | DOUBLE | NOT NULL |  | The primary key of this table. An internal system-assigned number that makes each row unique. |
+| 10 | `PERSON_ID` | DOUBLE | NOT NULL | FK→ | This is the value of the unique primary identifier of the person table. It is an internal system assigned number. |
+| 11 | `PERSON_RH_PHENOTYPE_ID` | DOUBLE | NOT NULL | FK→ | A link to the Rh phenotype from which this antigen originated. Links this row to a row on the person_rh_phenotype table. |
+| 12 | `REMOVAL_NOTES` | VARCHAR(255) |  |  | This column will hold the comments provided by the user while deactivating the antibody. |
+| 13 | `REMOVAL_REASON_CD` | DOUBLE | NOT NULL |  | This column will indicate the reason for deactivating the antibody. |
+| 14 | `REMOVED_DT_TM` | DATETIME |  |  | Indicates the date and time that an antigen is removed for the specified person. |
+| 15 | `REMOVED_PRSNL_ID` | DOUBLE | NOT NULL | FK→ | Uniquely identifies the personnel who removed the Antigen for the specified person. |
+| 16 | `RESULT_ID` | DOUBLE | NOT NULL | FK→ | This is the value of the unique primary identifier of the RESULT table. It is an internal system-assigned number. On this table, it links this row to the actual result that was verified for this person having this antigen. |
+| 17 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. |
+| 18 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. |
+| 19 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. |
+| 20 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. |
+| 21 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Joins out — this table references (published FKs)
+
+| Column | → References | Parent column |
+|--------|--------------|---------------|
+| `ENCNTR_ID` | [ENCOUNTER](ENCOUNTER.md) | `ENCNTR_ID` |
+| `PERSON_ID` | [PERSON](PERSON.md) | `PERSON_ID` |
+| `PERSON_RH_PHENOTYPE_ID` | [PERSON_RH_PHENOTYPE](PERSON_RH_PHENOTYPE.md) | `PERSON_RH_PHENOTYPE_ID` |
+| `REMOVED_PRSNL_ID` | [PRSNL](PRSNL.md) | `PERSON_ID` |
+| `RESULT_ID` | [RESULT](RESULT.md) | `RESULT_ID` |
+

@@ -1,0 +1,379 @@
+# PRSNL
+
+> The personnel table is a logical extension of the person table, but only includes the subset of persons who are classified as personnel. A single row in the personnel table is related to a single row in the person table.
+
+**Description:** Personnel  
+**Table type:** REFERENCE  
+**Primary key:** `PERSON_ID`  
+**Columns:** 45  
+**Referenced by:** 1038 columns
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `ACTIVE_IND` | DOUBLE |  |  | The table row is active or inactive. A row is generally active unless it is in an inactive state such as logically deleted, combined away, pending purge, etc. |
+| 2 | `ACTIVE_STATUS_CD` | DOUBLE | NOT NULL |  | Indicates the status of the row itself (not the data in the row) such as active, inactive, combined away, pending purge, etc. |
+| 3 | `ACTIVE_STATUS_DT_TM` | DATETIME |  |  | The date and time that the active_status_cd was set. |
+| 4 | `ACTIVE_STATUS_PRSNL_ID` | DOUBLE | NOT NULL |  | The person who caused the active_status_cd to be set or change. |
+| 5 | `BEG_EFFECTIVE_DT_TM` | DATETIME | NOT NULL |  | The date and time for which this table row becomes effective. Normally, this will be the date and time the row is added, but could be a past or future date and time. |
+| 6 | `CONTRIBUTOR_SYSTEM_CD` | DOUBLE | NOT NULL |  | Contributor system identifies the source feed of data from which a row was populated. This is mainly used to determine how to update a set of data that may have originated from more than one source feed. |
+| 7 | `CREATE_DT_TM` | DATETIME |  |  | This is the date and time that a row is created in the personnel table. |
+| 8 | `CREATE_PRSNL_ID` | DOUBLE | NOT NULL |  | This is the person responsible for creating a row in the personnel table. |
+| 9 | `DATA_STATUS_CD` | DOUBLE | NOT NULL |  | Data status indicates a level of authenticity of the row data. Typically this will either be AUTHENTICATED or UNAUTHENTICATED. |
+| 10 | `DATA_STATUS_DT_TM` | DATETIME |  |  | The date and time that the data_status_cd was set. |
+| 11 | `DATA_STATUS_PRSNL_ID` | DOUBLE | NOT NULL |  | The person who caused the data_status_cd to be set or change. |
+| 12 | `DEPARTMENT_CD` | DOUBLE | NOT NULL |  | not used, to be deleted! |
+| 13 | `EMAIL` | VARCHAR(100) |  |  | Cerner system E-MAIL identifier for the personnel. |
+| 14 | `END_EFFECTIVE_DT_TM` | DATETIME | NOT NULL |  | The date/time after which the row is no longer valid as active current data. This may be valued with the date that the row became inactive. |
+| 15 | `EXTERNAL_IND` | DOUBLE | NOT NULL |  | Set to true (1), if the personnel is external to the hospital network. Otherwise, set to false (0). |
+| 16 | `FREE_TEXT_IND` | DOUBLE |  |  | not used at this time! |
+| 17 | `FT_ENTITY_ID` | DOUBLE | NOT NULL |  | Primary key of the table row associated with a free text row. |
+| 18 | `FT_ENTITY_NAME` | VARCHAR(32) |  |  | Name of the table associated with a free text row. |
+| 19 | `LOGICAL_DOMAIN_GRP_ID` | DOUBLE | NOT NULL | FK→ | The ID of the logical domain group that the person is assigned to. |
+| 20 | `LOGICAL_DOMAIN_ID` | DOUBLE | NOT NULL | FK→ | The unique identifier for a logical domain. This identifier allows the data to be grouped by logical domain. For example, If you assign clients a logical_domain_id this would allow you to store data for multiple clients on this table. |
+| 21 | `LOG_ACCESS_IND` | DOUBLE |  |  | Log Access Ind (Not Used) |
+| 22 | `LOG_LEVEL` | DOUBLE |  |  | Log Level (Not Used) |
+| 23 | `NAME_FIRST` | VARCHAR(200) |  |  | This is the person's first given name. |
+| 24 | `NAME_FIRST_KEY` | VARCHAR(100) |  |  | This is the person's first given name all capitals with punctuation removed. This field is used for indexing and searching for a person by name. |
+| 25 | `NAME_FIRST_KEY_A_NLS` | VARCHAR(400) |  |  | NAME_FIRST_KEY_A_NLS column |
+| 26 | `NAME_FIRST_KEY_NLS` | VARCHAR(202) |  |  | First Name Key field converted to NLS format for internationalization requirements |
+| 27 | `NAME_FULL_FORMATTED` | VARCHAR(100) |  |  | This is the complete person name including punctuation and formatting. |
+| 28 | `NAME_LAST` | VARCHAR(200) |  |  | This is the person's family name. |
+| 29 | `NAME_LAST_KEY` | VARCHAR(100) |  |  | This is the person's family name all capitals with punctuation removed. This field is used for indexing and searching for a person by name. |
+| 30 | `NAME_LAST_KEY_A_NLS` | VARCHAR(400) |  |  | NAME_LAST_KEY_A_NLS column |
+| 31 | `NAME_LAST_KEY_NLS` | VARCHAR(202) |  |  | Last Name Key field converted to NLS format for internationalization requirements |
+| 32 | `PASSWORD` | VARCHAR(100) |  |  | Encrypted form of the data store password used to authorize Millennium users access to Millennium Mobile devices. |
+| 33 | `PERSON_ID` | DOUBLE | NOT NULL | PK FK→ | This is the value of the unique primary identifier of the person table. It is an internal system assigned number. |
+| 34 | `PHYSICIAN_IND` | DOUBLE |  |  | Set to TRUE, if the personnel is a physician. Otherwise, set to FALSE. |
+| 35 | `PHYSICIAN_STATUS_CD` | DOUBLE | NOT NULL |  | Physician status code identifies the status of the physician. (For Example: In, In Surgery, Out, etc.) |
+| 36 | `POSITION_CD` | DOUBLE | NOT NULL |  | The position is used to determine the applications and tasks the personnel is authorized to use. |
+| 37 | `PRIM_ASSIGN_LOC_CD` | DOUBLE | NOT NULL |  | Primary Assigned Location Code identifies the primary location to which a personnel will be assigned. |
+| 38 | `PRSNL_TYPE_CD` | DOUBLE | NOT NULL |  | The personnel type is used to group personnel with common characteristics (I.e., user, non-user, template user) |
+| 39 | `SECTION_CD` | DOUBLE | NOT NULL |  | not used, to be deleted! |
+| 40 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 41 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 42 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 43 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 44 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 45 | `USERNAME` | VARCHAR(50) |  |  | The system user name for the personnel used to gain primary access to the computer system. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Joins out — this table references (published FKs)
+
+| Column | → References | Parent column |
+|--------|--------------|---------------|
+| `LOGICAL_DOMAIN_GRP_ID` | [LOGICAL_DOMAIN_GRP](LOGICAL_DOMAIN_GRP.md) | `LOGICAL_DOMAIN_GRP_ID` |
+| `LOGICAL_DOMAIN_ID` | [LOGICAL_DOMAIN](LOGICAL_DOMAIN.md) | `LOGICAL_DOMAIN_ID` |
+| `PERSON_ID` | [PERSON](PERSON.md) | `PERSON_ID` |
+
+## Referenced by (1038)
+
+| From table | Column |
+|------------|--------|
+| [ACCOUNT](ACCOUNT.md) | `CREATED_PRSNL_ID` |
+| [ACTIVITY_LOG](ACTIVITY_LOG.md) | `CREATED_PRSNL_ID` |
+| [ACT_PW_COMP_G_ACTION](ACT_PW_COMP_G_ACTION.md) | `PRSNL_ID` |
+| [ACUTE_CARE_AUDIT_INFO](ACUTE_CARE_AUDIT_INFO.md) | `AUDIT_PRSNL_ID` |
+| [ALERT_AUDIT_TRANSACTION](ALERT_AUDIT_TRANSACTION.md) | `PRSNL_ID` |
+| [ALLERGY_EXT_DATA](ALLERGY_EXT_DATA.md) | `ACTION_PRSNL_ID` |
+| [ALLERGY_EXT_DATA](ALLERGY_EXT_DATA.md) | `CMB_PRSNL_ID` |
+| [AP_APP_FOLDERS](AP_APP_FOLDERS.md) | `USER_ID` |
+| [AP_CASE_QUERY](AP_CASE_QUERY.md) | `STARTED_PRSNL_ID` |
+| [AP_DC_EVENT](AP_DC_EVENT.md) | `CANCEL_PRSNL_ID` |
+| [AP_DC_EVENT](AP_DC_EVENT.md) | `COMPLETE_PRSNL_ID` |
+| [AP_DC_EVENT](AP_DC_EVENT.md) | `INITIATED_PRSNL_ID` |
+| [AP_DC_EVENT](AP_DC_EVENT.md) | `REPORT_ISSUED_BY_PRSNL_ID` |
+| [AP_DC_EVENT_PRSNL](AP_DC_EVENT_PRSNL.md) | `PRSNL_ID` |
+| [AP_DIAG_RPT_REVIEW](AP_DIAG_RPT_REVIEW.md) | `VERIFIED_PRSNL_ID` |
+| [AP_EXT_DATA](AP_EXT_DATA.md) | `ACTION_PRSNL_ID` |
+| [AP_EXT_DATA](AP_EXT_DATA.md) | `ISSUE_PRSNL_ID` |
+| [AP_FAVORITE](AP_FAVORITE.md) | `PRSNL_ID` |
+| [AP_FOLDER](AP_FOLDER.md) | `CREATE_PRSNL_ID` |
+| [AP_FOLDER_ENTITY](AP_FOLDER_ENTITY.md) | `CREATE_PRSNL_ID` |
+| [AP_FT_EVENT](AP_FT_EVENT.md) | `ORIGIN_PRSNL_ID` |
+| [AP_FT_EVENT](AP_FT_EVENT.md) | `TERM_ID` |
+| [AP_IMAGE_GROUP_INI](AP_IMAGE_GROUP_INI.md) | `PERSON_ID` |
+| [AP_IMAGE_ITEM_INI](AP_IMAGE_ITEM_INI.md) | `PERSON_ID` |
+| [AP_PRSNL_PRIV](AP_PRSNL_PRIV.md) | `PRSNL_ID` |
+| [AP_QA_INFO](AP_QA_INFO.md) | `ACTIVATED_ID` |
+| [AP_QA_INFO](AP_QA_INFO.md) | `COMPLETE_ID` |
+| [AP_QA_INFO](AP_QA_INFO.md) | `SUSPEND_ID` |
+| [AP_SPECIMEN_PROTOCOL](AP_SPECIMEN_PROTOCOL.md) | `PATHOLOGIST_ID` |
+| [AP_SYS_CORR](AP_SYS_CORR.md) | `ASSIGN_TO_PRSNL_ID` |
+| [AP_TRANS_STAT](AP_TRANS_STAT.md) | `PATHOLOGIST_ID` |
+| [AP_TRANS_STAT](AP_TRANS_STAT.md) | `TRANSCRIPTIONIST_ID` |
+| [ASSIGN_RELEASE](ASSIGN_RELEASE.md) | `RELEASE_PRSNL_ID` |
+| [AT_ACCT_RELTN](AT_ACCT_RELTN.md) | `CREATED_PRSNL_ID` |
+| [AUTHORIZATION](AUTHORIZATION.md) | `PROVIDER_PRSNL_ID` |
+| [AUTHORIZATION_PROFILE](AUTHORIZATION_PROFILE.md) | `PROFILE_PRSNL_ID` |
+| [AUTH_DETAIL](AUTH_DETAIL.md) | `PRSNL_ID` |
+| [AUTH_ERROR](AUTH_ERROR.md) | `PERSON_ID` |
+| [AUTH_ITEM_ORDER_R_HIST](AUTH_ITEM_ORDER_R_HIST.md) | `CREATE_PRSNL_ID` |
+| [BATCH_TRANS](BATCH_TRANS.md) | `CREATED_PRSNL_ID` |
+| [BATCH_TRANS](BATCH_TRANS.md) | `POSTED_BY_USER_ID` |
+| [BATCH_TRANS_FILE](BATCH_TRANS_FILE.md) | `CREATED_PRSNL_ID` |
+| [BBHIST_PRODUCT_EVENT](BBHIST_PRODUCT_EVENT.md) | `PRSNL_ID` |
+| [BB_EDN_PRODUCT](BB_EDN_PRODUCT.md) | `EVENT_PRSNL_ID` |
+| [BB_LABEL_VERIFY](BB_LABEL_VERIFY.md) | `PERSONNEL_ID` |
+| [BB_QC_GROUP_ACTIVITY](BB_QC_GROUP_ACTIVITY.md) | `LOCK_PRSNL_ID` |
+| [BB_QC_GRP_REAGENT_ACTIVITY](BB_QC_GRP_REAGENT_ACTIVITY.md) | `ACTIVITY_PRSNL_ID` |
+| [BB_QC_RESULT](BB_QC_RESULT.md) | `ACTION_PRSNL_ID` |
+| [BB_QC_RESULT](BB_QC_RESULT.md) | `PRIMARY_REVIEW_PRSNL_ID` |
+| [BB_QC_RESULT](BB_QC_RESULT.md) | `RESULT_PRSNL_ID` |
+| [BB_QC_RESULT](BB_QC_RESULT.md) | `SECONDARY_REVIEW_PRSNL_ID` |
+| [BB_REVIEW_QUEUE](BB_REVIEW_QUEUE.md) | `REVIEW_PRSNL_ID` |
+| [BB_WORKLIST](BB_WORKLIST.md) | `CREATE_PRSNL_ID` |
+| [BH_GROUP_DOC](BH_GROUP_DOC.md) | `CREATED_BY_ID` |
+| [BH_GROUP_DOC](BH_GROUP_DOC.md) | `PRI_FCLTR_PRSNL_ID` |
+| [BH_GROUP_DOC](BH_GROUP_DOC.md) | `VERIFIED_BY_ID` |
+| [BH_GROUP_DOC_PRSNL](BH_GROUP_DOC_PRSNL.md) | `ASSOC_PRSNL_ID` |
+| [BLOB_REFERENCE](BLOB_REFERENCE.md) | `CREATE_PRSNL_ID` |
+| [BLOOD_BANK_COMMENT](BLOOD_BANK_COMMENT.md) | `COMMENT_ADDED_PRSNL_ID` |
+| [BMDI_ACQUIRED_DATA_TRACK](BMDI_ACQUIRED_DATA_TRACK.md) | `ASSOC_PRSNL_ID` |
+| [BMDI_ACQUIRED_DATA_TRACK](BMDI_ACQUIRED_DATA_TRACK.md) | `DISSOC_PRSNL_ID` |
+| [BMDI_ADT_PERSON_R](BMDI_ADT_PERSON_R.md) | `ASSOCIATION_PRSNL_ID` |
+| [BMDI_ADT_PERSON_R](BMDI_ADT_PERSON_R.md) | `DIS_ASSOCIATION_PRSNL_ID` |
+| [BMDI_ASSOCIATION_HINTS](BMDI_ASSOCIATION_HINTS.md) | `UPD_PRSNL_ID` |
+| [BR_ELIGIBLE_PROVIDER](BR_ELIGIBLE_PROVIDER.md) | `PROVIDER_ID` |
+| [BR_WIZARD_HIST](BR_WIZARD_HIST.md) | `PRSNL_ID` |
+| [BT_COND_CRIT_GRP_RELTN](BT_COND_CRIT_GRP_RELTN.md) | `PRSNL_ID` |
+| [BT_PRSNL_GRP_RELTN](BT_PRSNL_GRP_RELTN.md) | `PRSNL_ID` |
+| [CAC_NOMENCLATURE](CAC_NOMENCLATURE.md) | `PHYSICIAN_ID` |
+| [CASE_ATTENDANCE](CASE_ATTENDANCE.md) | `CASE_ATTENDEE_ID` |
+| [CASE_CART](CASE_CART.md) | `VERIFIED_BY_ID` |
+| [CASE_PROVIDER](CASE_PROVIDER.md) | `PHYSICIAN_ID` |
+| [CCR_USER_FILTER](CCR_USER_FILTER.md) | `PRSNL_ID` |
+| [CDI_CLIPBOARD](CDI_CLIPBOARD.md) | `COPY_USER_ID` |
+| [CDI_DOCUMENT_CHECKOUT](CDI_DOCUMENT_CHECKOUT.md) | `PERSON_ID` |
+| [CDI_DOCUMENT_TYPE_LIST](CDI_DOCUMENT_TYPE_LIST.md) | `PRSNL_ID` |
+| [CDI_PENDING_DOCUMENT](CDI_PENDING_DOCUMENT.md) | `PERFORMING_PROVIDER_ID` |
+| [CDI_REJECT_LOG](CDI_REJECT_LOG.md) | `REJECT_USER_ID` |
+| [CDI_TRANS_LOG](CDI_TRANS_LOG.md) | `PERF_PRSNL_ID` |
+| [CDI_USER_FILTER](CDI_USER_FILTER.md) | `PERSON_ID` |
+| [CDI_WORK_ITEM](CDI_WORK_ITEM.md) | `ORDERING_PROVIDER_ID` |
+| [CDI_WORK_ITEM](CDI_WORK_ITEM.md) | `OWNER_PRSNL_ID` |
+| [CDI_WORK_ITEM_ACTION](CDI_WORK_ITEM_ACTION.md) | `ACTION_PRSNL_ID` |
+| [CDI_WORK_ITEM_VIEW](CDI_WORK_ITEM_VIEW.md) | `PRSNL_ID` |
+| [CDI_WORK_QUEUE_PRSNL_RELTN](CDI_WORK_QUEUE_PRSNL_RELTN.md) | `PERSON_ID` |
+| [CE_AUDIT_LOG](CE_AUDIT_LOG.md) | `OPERATION_PRSNL_ID` |
+| [CE_DYNAMIC_LABEL](CE_DYNAMIC_LABEL.md) | `LABEL_PRSNL_ID` |
+| [CE_EVENT_ACTION](CE_EVENT_ACTION.md) | `ACTION_PRSNL_ID` |
+| [CE_EVENT_ACTION](CE_EVENT_ACTION.md) | `ASSIGN_PRSNL_ID` |
+| [CE_EVENT_ACTION](CE_EVENT_ACTION.md) | `LAST_SAVED_PRSNL_ID` |
+| [CE_EVENT_ACTION](CE_EVENT_ACTION.md) | `ORIGINATING_PROVIDER_ID` |
+| [CE_EVENT_NOTE](CE_EVENT_NOTE.md) | `NOTE_PRSNL_ID` |
+| [CE_EVENT_PRSNL](CE_EVENT_PRSNL.md) | `ACTION_PRSNL_ID` |
+| [CE_EVENT_PRSNL](CE_EVENT_PRSNL.md) | `PROXY_PRSNL_ID` |
+| [CE_EVENT_PRSNL](CE_EVENT_PRSNL.md) | `REQUEST_PRSNL_ID` |
+| [CE_RTE_PRSNL_RELTN](CE_RTE_PRSNL_RELTN.md) | `ACTION_PRSNL_ID` |
+| [CE_SPECIMEN_COLL](CE_SPECIMEN_COLL.md) | `COLLECT_PRSNL_ID` |
+| [CE_SUSCEPTIBILITY](CE_SUSCEPTIBILITY.md) | `RESULT_PRSNL_ID` |
+| [CHARGE](CHARGE.md) | `POSTED_ID` |
+| [CHARGE_BATCH](CHARGE_BATCH.md) | `ASSIGNED_PRSNL_ID` |
+| [CHARGE_BATCH](CHARGE_BATCH.md) | `CREATED_PRSNL_ID` |
+| [CHARGE_BATCH_DETAIL](CHARGE_BATCH_DETAIL.md) | `ORDERING_PHYS_ID` |
+| [CHARGE_BATCH_DETAIL](CHARGE_BATCH_DETAIL.md) | `RENDERING_PHYS_ID` |
+| [CHARGE_BATCH_DETAIL_FIELD](CHARGE_BATCH_DETAIL_FIELD.md) | `FIELD_VALUE_PRSNL_ID` |
+| [CHARGE_EVENT_ACT](CHARGE_EVENT_ACT.md) | `CEA_PRSNL_ID` |
+| [CHARTING_OPERATIONS_PRSNL](CHARTING_OPERATIONS_PRSNL.md) | `PRSNL_ID` |
+| [CHART_REQUEST](CHART_REQUEST.md) | `PRSNL_PERSON_ID` |
+| [CHART_REQUEST](CHART_REQUEST.md) | `REQUEST_PRSNL_ID` |
+| [CHART_SEQ_GROUP_RELTN](CHART_SEQ_GROUP_RELTN.md) | `PRSNL_ID` |
+| [CLINICAL_EVENT](CLINICAL_EVENT.md) | `PERFORMED_PRSNL_ID` |
+| [CLINICAL_EVENT](CLINICAL_EVENT.md) | `VERIFIED_PRSNL_ID` |
+| [CLINICAL_EVENT_SEC_LBL](CLINICAL_EVENT_SEC_LBL.md) | `CREATED_BY_PRSNL_ID` |
+| [CLRFCTN_ACTION](CLRFCTN_ACTION.md) | `ACTION_PRSNL_ID` |
+| [CMN_IMPORT_ACTIVITY](CMN_IMPORT_ACTIVITY.md) | `PERFORMING_PRSNL_ID` |
+| [CMN_NAME_SWAP_ACTIVITY](CMN_NAME_SWAP_ACTIVITY.md) | `PERFORMING_PRSNL_ID` |
+| [CNT_CODE_VALUE_KEY](CNT_CODE_VALUE_KEY.md) | `IGNORE_USER_ID` |
+| [CN_DCP_SHIFT_ASSIGNMENT_ST](CN_DCP_SHIFT_ASSIGNMENT_ST.md) | `PRSNL_ID` |
+| [CODING](CODING.md) | `CODING_PRSNL_ID` |
+| [CODING](CODING.md) | `CREATE_PRSNL_ID` |
+| [CODING_AUDIT](CODING_AUDIT.md) | `AUDIT_PRSNL_ID` |
+| [CODING_AUDIT](CODING_AUDIT.md) | `CODING_PRSNL_ID` |
+| [CODING_HIST](CODING_HIST.md) | `CODING_PRSNL_ID` |
+| [CODING_HIST](CODING_HIST.md) | `CREATE_PRSNL_ID` |
+| [CODING_LOCK](CODING_LOCK.md) | `LOCK_PRSNL_ID` |
+| [CODING_SPECIALTY](CODING_SPECIALTY.md) | `CODING_PRSNL_ID` |
+| [CODING_SPECIALTY](CODING_SPECIALTY.md) | `CREATE_PRSNL_ID` |
+| [COMMITTEE_MEMBER](COMMITTEE_MEMBER.md) | `PERSON_ID` |
+| [COMPLETION_HOLD](COMPLETION_HOLD.md) | `PROVIDER_ID` |
+| [COMP_FILTER_GROUP](COMP_FILTER_GROUP.md) | `PERSON_ID` |
+| [CONCEPT_PRSNL_CROSSMAP](CONCEPT_PRSNL_CROSSMAP.md) | `PRSNL_ID` |
+| [CONDITION_SUMMARY](CONDITION_SUMMARY.md) | `RECORDED_BY_PRSNL_ID` |
+| [CONSENT](CONSENT.md) | `PRSNL_ID` |
+| [CONSENT_PROVISION](CONSENT_PROVISION.md) | `PRSNL_ID` |
+| [CONTAINER](CONTAINER.md) | `DRAWN_ID` |
+| [CONTAINER](CONTAINER.md) | `RECEIVED_ID` |
+| [CONTRIBUTOR_SYSTEM](CONTRIBUTOR_SYSTEM.md) | `PRSNL_PERSON_ID` |
+| [CONVERT_AUDIT_TRANSACTION](CONVERT_AUDIT_TRANSACTION.md) | `PRSNL_ID` |
+| [CORRECTED_PRODUCT](CORRECTED_PRODUCT.md) | `ORIG_DISP_PROV_ID` |
+| [CORRECTED_PRODUCT](CORRECTED_PRODUCT.md) | `ORIG_UPDT_ID` |
+| [CORSP_LOG](CORSP_LOG.md) | `CREATED_PRSNL_ID` |
+| [CP_PATHWAY](CP_PATHWAY.md) | `OWNER_PRSNL_ID` |
+| [CP_PATHWAY_ACTION](CP_PATHWAY_ACTION.md) | `PRSNL_ID` |
+| [CP_PATHWAY_ACTIVITY](CP_PATHWAY_ACTIVITY.md) | `PRSNL_ID` |
+| [CREDENTIAL](CREDENTIAL.md) | `NOTIFY_PRSNL_ID` |
+| [CREDENTIAL](CREDENTIAL.md) | `PRSNL_ID` |
+| [CRITIQUE_PRSNL](CRITIQUE_PRSNL.md) | `CRITIQUED_ID` |
+| [CROSSMATCH](CROSSMATCH.md) | `RELEASE_PRSNL_ID` |
+| [CR_REPORT_REQUEST](CR_REPORT_REQUEST.md) | `PROVIDER_PRSNL_ID` |
+| [CR_REPORT_REQUEST](CR_REPORT_REQUEST.md) | `REQUEST_PRSNL_ID` |
+| [CSM_LST_CONTACT](CSM_LST_CONTACT.md) | `PERSON_ID` |
+| [CSM_QUEUE_PERS_XREF](CSM_QUEUE_PERS_XREF.md) | `PERSON_ID` |
+| [CT_PRESCREEN_JOB](CT_PRESCREEN_JOB.md) | `PRSNL_ID` |
+| [CT_PROT_REASON_DELETED](CT_PROT_REASON_DELETED.md) | `DELETION_PRSNL_ID` |
+| [CT_REASON_DELETED](CT_REASON_DELETED.md) | `DELETION_PRSNL_ID` |
+| [CT_USER_PREFERENCE](CT_USER_PREFERENCE.md) | `PRSNL_ID` |
+| [CUSTOM_PT_LIST](CUSTOM_PT_LIST.md) | `PERSON_ID` |
+| [CV_ACRONYM](CV_ACRONYM.md) | `PROVIDER_ID` |
+| [CV_DEVICE_LOCATION_R](CV_DEVICE_LOCATION_R.md) | `USER_ID` |
+| [CV_ED_REVIEW](CV_ED_REVIEW.md) | `REQUESTOR_PRSNL_ID` |
+| [CV_ED_REVIEW](CV_ED_REVIEW.md) | `REVIEWER_PRSNL_ID` |
+| [CV_PROC](CV_PROC.md) | `ORDER_PHYSICIAN_ID` |
+| [CV_PROC](CV_PROC.md) | `PRIM_PHYSICIAN_ID` |
+| [CV_PROC](CV_PROC.md) | `REFER_PHYSICIAN_ID` |
+| [CV_STEP](CV_STEP.md) | `LOCK_PRSNL_ID` |
+| [CV_STEP](CV_STEP.md) | `PERF_PROVIDER_ID` |
+| [CV_STEP](CV_STEP.md) | `PRELIMINARY_AUTHOR_ID` |
+| [CV_STEP_PRSNL](CV_STEP_PRSNL.md) | `STEP_PRSNL_ID` |
+| [CV_STEP_SCHED](CV_STEP_SCHED.md) | `SCHED_PHYS_ID` |
+| [CYTO_SCREENING_LIMITS](CYTO_SCREENING_LIMITS.md) | `PRSNL_ID` |
+| [CYTO_SCREENING_SECURITY](CYTO_SCREENING_SECURITY.md) | `PRSNL_ID` |
+| [DAILY_CYTOLOGY_COUNTS](DAILY_CYTOLOGY_COUNTS.md) | `PRSNL_ID` |
+| [DASH_BREAK](DASH_BREAK.md) | `PROVIDER_ID` |
+| [DASH_BREAK_HIST](DASH_BREAK_HIST.md) | `PROVIDER_ID` |
+| [DASH_COMPONENT](DASH_COMPONENT.md) | `LAST_UPDT_PRSNL_ID` |
+| [DASH_DASHBOARD](DASH_DASHBOARD.md) | `LAST_UPDT_PRSNL_ID` |
+| [DASH_FILTER](DASH_FILTER.md) | `LAST_UPDT_PRSNL_ID` |
+| [DASH_ITEM_GROUP](DASH_ITEM_GROUP.md) | `LAST_UPDT_PRSNL_ID` |
+| [DA_BATCH_COLLECTION](DA_BATCH_COLLECTION.md) | `CREATE_PRSNL_ID` |
+| [DA_BATCH_QUERY](DA_BATCH_QUERY.md) | `CREATED_BY_PRSNL_ID` |
+| [DA_BATCH_REPORT](DA_BATCH_REPORT.md) | `CREATED_BY_PRSNL_ID` |
+| [DA_BATCH_SCHED](DA_BATCH_SCHED.md) | `CREATED_BY_PRSNL_ID` |
+| [DA_DOCUMENT](DA_DOCUMENT.md) | `CREATED_BY_PRSNL_ID` |
+| [DA_DOCUMENT_PRSNL_RELTN](DA_DOCUMENT_PRSNL_RELTN.md) | `PRSNL_ID` |
+| [DA_DOCUMENT_PRSNL_RELTN](DA_DOCUMENT_PRSNL_RELTN.md) | `REQUESTED_BY_PRSNL_ID` |
+| [DA_FOLDER](DA_FOLDER.md) | `CREATE_PRSNL_ID` |
+| [DA_GROUP_USER_RELTN](DA_GROUP_USER_RELTN.md) | `PRSNL_ID` |
+| [DA_QUERY](DA_QUERY.md) | `OWNER_PRSNL_ID` |
+| [DA_QUERY_DEFAULT_PROMPTS](DA_QUERY_DEFAULT_PROMPTS.md) | `USER_PRSNL_ID` |
+| [DA_REPORT](DA_REPORT.md) | `OWNER_PRSNL_ID` |
+| [DA_REPORT_DEFAULT_PROMPTS](DA_REPORT_DEFAULT_PROMPTS.md) | `USER_PRSNL_ID` |
+| [DA_USER_SECURITY](DA_USER_SECURITY.md) | `PRSNL_ID` |
+| [DCP_CUSTOM_COLS_SORT](DCP_CUSTOM_COLS_SORT.md) | `PRSNL_ID` |
+| [DCP_CUSTOM_COLUMNS](DCP_CUSTOM_COLUMNS.md) | `PRSNL_ID` |
+| [DCP_FORMS_ACTIVITY_PRSNL](DCP_FORMS_ACTIVITY_PRSNL.md) | `PROXY_ID` |
+| [DCP_FORMS_ACTIVITY_PRSNL](DCP_FORMS_ACTIVITY_PRSNL.md) | `PRSNL_ID` |
+| [DCP_MP_PATIENT_LIST](DCP_MP_PATIENT_LIST.md) | `OWNER_PRSNL_ID` |
+| [DCP_PATIENT_LIST](DCP_PATIENT_LIST.md) | `OWNER_PRSNL_ID` |
+| [DCP_PL_QUERY_TEMP_ACCESS](DCP_PL_QUERY_TEMP_ACCESS.md) | `PROVIDER_ID` |
+| [DCP_PL_RELTN](DCP_PL_RELTN.md) | `PRSNL_ID` |
+| [DCP_PRSNL_LOC_R](DCP_PRSNL_LOC_R.md) | `PERSON_ID` |
+| [DD_CONTRIBUTION](DD_CONTRIBUTION.md) | `AUTHOR_ID` |
+| [DD_REF_LABEL](DD_REF_LABEL.md) | `USER_ID` |
+| [DD_REF_TEMPLATE](DD_REF_TEMPLATE.md) | `AUTHOR_ID` |
+| [DD_SDOC_SECTION](DD_SDOC_SECTION.md) | `AUTHOR_ID` |
+| [DD_SESSION](DD_SESSION.md) | `SESSION_USER_ID` |
+| [DIAGNOSIS_ACTION](DIAGNOSIS_ACTION.md) | `PRSNL_ID` |
+| [DIAGNOSIS_SEC_LBL](DIAGNOSIS_SEC_LBL.md) | `CREATED_BY_PRSNL_ID` |
+| [DISPENSE_HX](DISPENSE_HX.md) | `DISPENSE_PRSNL_ID` |
+| [DISPENSE_HX](DISPENSE_HX.md) | `RUN_USER_ID` |
+| [DISPENSE_HX](DISPENSE_HX.md) | `WITNS_PRSNL_ID` |
+| [DISPENSE_REPLACE](DISPENSE_REPLACE.md) | `PRSNL_ID` |
+| [DISPENSE_RETURN](DISPENSE_RETURN.md) | `RETURN_COURIER_ID` |
+| [DISPENSE_RETURN](DISPENSE_RETURN.md) | `RETURN_PRSNL_ID` |
+| [DMS_EVENT](DMS_EVENT.md) | `CREATED_BY_ID` |
+| [DMS_MEDIA_INSTANCE](DMS_MEDIA_INSTANCE.md) | `CONTRIBUTOR_ID` |
+| [DMS_MEDIA_INSTANCE](DMS_MEDIA_INSTANCE.md) | `CREATED_BY_ID` |
+| [DM_DCM_UOW](DM_DCM_UOW.md) | `PRSNL_ID` |
+| [DM_DCM_WP_PRSNL_R](DM_DCM_WP_PRSNL_R.md) | `PRSNL_ID` |
+| [DM_PREFS](DM_PREFS.md) | `PERSON_ID` |
+| [DM_REFCHG_PRSNL_CTX_R](DM_REFCHG_PRSNL_CTX_R.md) | `PRSNL_ID` |
+| [DM_TEXT_FIND_COMMENT](DM_TEXT_FIND_COMMENT.md) | `COMMENT_PRSNL_ID` |
+| [DM_TEXT_FIND_STRUCT_CMNT](DM_TEXT_FIND_STRUCT_CMNT.md) | `COMMENT_PRSNL_ID` |
+| [DOCUMENT_QUALITY_REVIEW](DOCUMENT_QUALITY_REVIEW.md) | `PRSNL_ID` |
+| [DOC_TRANSCRIPTION_QUEUE](DOC_TRANSCRIPTION_QUEUE.md) | `AUTHOR_ID` |
+| [DSI_FEEDBACK](DSI_FEEDBACK.md) | `PRSNL_ID` |
+| [DTS_TRANS_STATS](DTS_TRANS_STATS.md) | `AUTHOR_PRSNL_ID` |
+| [DTS_TRANS_STATS](DTS_TRANS_STATS.md) | `TRANS_PRSNL_ID` |
+| [EEM_ABN_ACTION](EEM_ABN_ACTION.md) | `ACTION_PRSNL_ID` |
+| [EEM_ABN_FORM](EEM_ABN_FORM.md) | `TO_PRSNL_ID` |
+| [EEM_ACTION](EEM_ACTION.md) | `ACTION_PRSNL_ID` |
+| [EEM_ADDRESS_DETAIL](EEM_ADDRESS_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_AUTH_DETAIL](EEM_AUTH_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_BENEFIT_ALLOC](EEM_BENEFIT_ALLOC.md) | `MADE_BY_ID` |
+| [EEM_COVERAGE_DETAIL](EEM_COVERAGE_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_DEMOG_DETAIL](EEM_DEMOG_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_ELIG_DETAIL](EEM_ELIG_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_FILE_ACTION](EEM_FILE_ACTION.md) | `ACTION_PRSNL_ID` |
+| [EEM_MOH_DETAIL](EEM_MOH_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_NEWBORN_DETAIL](EEM_NEWBORN_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EEM_NTWK_PRSNL_RELTN](EEM_NTWK_PRSNL_RELTN.md) | `PRSNL_ID` |
+| [EEM_PROFILE_PRSNL](EEM_PROFILE_PRSNL.md) | `PRSNL_ID` |
+| [EEM_PRSNL_LOC_RELTN](EEM_PRSNL_LOC_RELTN.md) | `PRSNL_ID` |
+| [EEM_RX_ELIG_DETAIL](EEM_RX_ELIG_DETAIL.md) | `PRESCRIBER_PRSNL_ID` |
+| [EEM_RX_ELIG_DETAIL](EEM_RX_ELIG_DETAIL.md) | `SENDER_PRSNL_ID` |
+| [EHI_QUEUE](EHI_QUEUE.md) | `PRSNL_ID` |
+| [EKS_ALERT_ESC_HIST](EKS_ALERT_ESC_HIST.md) | `ACK_BY_ID` |
+| [EKS_DLG_EVENT](EKS_DLG_EVENT.md) | `DLG_PRSNL_ID` |
+| [EKS_NOTIFY_PERSN_R](EKS_NOTIFY_PERSN_R.md) | `PERSON_ID` |
+| [ENCNTR_APPEAL](ENCNTR_APPEAL.md) | `ADVISOR_PRSNL_ID` |
+| [ENCNTR_APPEAL](ENCNTR_APPEAL.md) | `APPEAL_PRSNL_ID` |
+| [ENCNTR_AVOIDABLE_DAYS](ENCNTR_AVOIDABLE_DAYS.md) | `RESP_PARTY_PRSNL_ID` |
+| [ENCNTR_CARE_MGMT_COMM](ENCNTR_CARE_MGMT_COMM.md) | `SENDER_PRSNL_ID` |
+| [ENCNTR_CATCHMENT_RELTN](ENCNTR_CATCHMENT_RELTN.md) | `LIAISON_PRSNL_ID` |
+| [ENCNTR_CATCHMENT_R_HIST](ENCNTR_CATCHMENT_R_HIST.md) | `LIAISON_PRSNL_ID` |
+| [ENCNTR_CLIN_SEC_REVIEW](ENCNTR_CLIN_SEC_REVIEW.md) | `SEC_REVIEW_RESP_PARTY_ID` |
+| [ENCNTR_DENIED_DAYS](ENCNTR_DENIED_DAYS.md) | `DENIAL_PRSNL_ID` |
+| [ENCNTR_DENIED_DAYS](ENCNTR_DENIED_DAYS.md) | `RESP_PARTY_PRSNL_ID` |
+| [ENCNTR_FLEX_HIST](ENCNTR_FLEX_HIST.md) | `COMPLETE_REG_PRSNL_ID` |
+| [ENCNTR_FLEX_HIST](ENCNTR_FLEX_HIST.md) | `DISCH_PRSNL_ID` |
+| [ENCNTR_LEAVE](ENCNTR_LEAVE.md) | `END_LEAVE_USER_ID` |
+| [ENCNTR_LEAVE_HISTORY](ENCNTR_LEAVE_HISTORY.md) | `END_LEAVE_USER_ID` |
+| [ENCNTR_LOC_HIST](ENCNTR_LOC_HIST.md) | `ARRIVE_PRSNL_ID` |
+| [ENCNTR_LOC_HIST](ENCNTR_LOC_HIST.md) | `DEPART_PRSNL_ID` |
+| [ENCNTR_LOC_HIST](ENCNTR_LOC_HIST.md) | `PLACEMENT_AUTH_PRSNL_ID` |
+| [ENCNTR_ORG_SERVICE_RELTN](ENCNTR_ORG_SERVICE_RELTN.md) | `REFERRING_PRSNL_ID` |
+| [ENCNTR_PENDING](ENCNTR_PENDING.md) | `ATTENDDOC_ID` |
+| [ENCNTR_PENDING_HIST](ENCNTR_PENDING_HIST.md) | `ATTENDDOC_ID` |
+| [ENCNTR_PLAN_RELTN](ENCNTR_PLAN_RELTN.md) | `NOTIFY_PRSNL_ID` |
+| [ENCNTR_PLAN_RELTN_HIST](ENCNTR_PLAN_RELTN_HIST.md) | `NOTIFY_PRSNL_ID` |
+| [ENCNTR_PROCEDURE](ENCNTR_PROCEDURE.md) | `SCHED_PRIMARY_SURGEON_ID` |
+| [ENCNTR_PRSNL_RELTN](ENCNTR_PRSNL_RELTN.md) | `PRSNL_PERSON_ID` |
+| [ENCNTR_PRSNL_RELTN_HISTORY](ENCNTR_PRSNL_RELTN_HISTORY.md) | `PRSNL_PERSON_ID` |
+| [ENCNTR_SOCIAL_HEALTHCARE](ENCNTR_SOCIAL_HEALTHCARE.md) | `VERIFY_PRSNL_ID` |
+| [ENCNTR_SOCIAL_HEALTH_HIST](ENCNTR_SOCIAL_HEALTH_HIST.md) | `VERIFY_PRSNL_ID` |
+| [ENCOUNTER](ENCOUNTER.md) | `COMPLETE_REG_PRSNL_ID` |
+| [ENCOUNTER](ENCOUNTER.md) | `DISCH_PRSNL_ID` |
+| [ENTITY_ACCESS](ENTITY_ACCESS.md) | `PERSON_ID` |
+| [EPA_RECORD](EPA_RECORD.md) | `DATA_ENTERER_PRSNL_ID` |
+| [EPA_RECORD](EPA_RECORD.md) | `PRSNL_ID` |
+| [EPISODE_PRSNL_RELTN](EPISODE_PRSNL_RELTN.md) | `PRSNL_PERSON_ID` |
+| [EPISODE_PRSNL_RELTN_HIST](EPISODE_PRSNL_RELTN_HIST.md) | `PRSNL_PERSON_ID` |
+| [EPRESCRIBE_DETAIL](EPRESCRIBE_DETAIL.md) | `CS_NOMINATOR_ID` |
+| [ERX_EXT_MED_LIST_ACCESS](ERX_EXT_MED_LIST_ACCESS.md) | `USER_ID` |
+| [EXAM_CRITIQUE_INFO](EXAM_CRITIQUE_INFO.md) | `CREATED_BY_ID` |
+| [EXPEDITE_MANUAL](EXPEDITE_MANUAL.md) | `PROVIDER_ID` |
+| [EXPEDITE_TRIGGER](EXPEDITE_TRIGGER.md) | `PROVIDER_ID` |
+| [EXPIRE_RULE](EXPIRE_RULE.md) | `PRSNL_ID` |
+| [EXT_DATA_INFO](EXT_DATA_INFO.md) | `ACTION_PRSNL_ID` |
+| [FHX_ACTION](FHX_ACTION.md) | `PRSNL_ID` |
+| [FHX_LONG_TEXT_R](FHX_LONG_TEXT_R.md) | `COMMENT_PRSNL_ID` |
+| [FHX_SECTION_DEF](FHX_SECTION_DEF.md) | `PRSNL_ID` |
+| [FILL_PRINT_ORD_HX](FILL_PRINT_ORD_HX.md) | `VERIFY_PRSNL_ID` |
+| [FN_EV_SURVEY_ACT](FN_EV_SURVEY_ACT.md) | `PERFORMED_PRSNL_ID` |
+| [FN_OMF_ENCNTR](FN_OMF_ENCNTR.md) | `PRIMARY_CARE_PHYSICIAN_ID` |
+| [FN_OMF_ENCNTR](FN_OMF_ENCNTR.md) | `PRIMARY_DOC_ID` |
+| [FN_OMF_ENCNTR](FN_OMF_ENCNTR.md) | `PRIMARY_NURSE_ID` |
+| [FN_OMF_ENCNTR](FN_OMF_ENCNTR.md) | `SECONDARY_DOC_ID` |
+| [FN_OMF_ENCNTR](FN_OMF_ENCNTR.md) | `SECONDARY_NURSE_ID` |
+| [FREQUENCY_SCHEDULE](FREQUENCY_SCHEDULE.md) | `CRITICAL_UPD_ID` |
+| [GEL_BATCH](GEL_BATCH.md) | `PREPARED_PRSNL_ID` |
+
+_… and 738 more (see `data/foreign_keys.jsonl`)._
+

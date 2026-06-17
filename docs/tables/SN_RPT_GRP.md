@@ -1,0 +1,37 @@
+# SN_RPT_GRP
+
+> This table groups SurgiNet reports into logical report sets.
+
+**Description:** SN RPT GRP  
+**Table type:** REFERENCE  
+**Primary key:** `RPT_GRP_ID`  
+**Columns:** 12  
+**Referenced by:** 1 columns
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `CREATE_APPLCTX` | DOUBLE |  |  | The application context number from the record info block. |
+| 2 | `CREATE_DT_TM` | DATETIME |  |  | The date and time the row was first inserted. |
+| 3 | `CREATE_PRSNL_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the row to be created in the table. |
+| 4 | `CREATE_TASK` | DOUBLE |  |  | The registered (assigned) task number for the process that inserted the row. |
+| 5 | `DISPLAY` | VARCHAR(60) | NOT NULL |  | The display name for this report group. |
+| 6 | `ORDER_SEQ` | DOUBLE | NOT NULL |  | The order that this report group displays. |
+| 7 | `RPT_GRP_ID` | DOUBLE | NOT NULL | PK | Primary Key |
+| 8 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. |
+| 9 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. |
+| 10 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. |
+| 11 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. |
+| 12 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Referenced by (1)
+
+| From table | Column |
+|------------|--------|
+| [SN_RPT_GRP_R](SN_RPT_GRP_R.md) | `RPT_GRP_ID` |
+

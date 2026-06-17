@@ -1,0 +1,38 @@
+# AP_OPS_EXCEPTION_DETAIL
+
+> AP Operations Exception Details
+
+**Description:** This activity table contains additional information for processing an AP order.  
+**Table type:** ACTIVITY  
+**Primary key:** _(not published — see note)_  
+**Columns:** 13
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `ACTION_FLAG` | DOUBLE | NOT NULL | FK→ | Indicates the type of action to be performed on the ops exception order. (-1) Held Verify, (1) Quick Verify Order, (2) Specimen Order, (3) Report Order, (4) Processing Task Order, (5) Specimen Update, (6) Report Update, (7) Processing Task Update |
+| 2 | `FIELD_DESC` | VARCHAR(255) |  |  | A text value of the additional information for the ops exception order. |
+| 3 | `FIELD_DT_TM` | DATETIME |  |  | A date and time value of the additional information for the ops exception order. |
+| 4 | `FIELD_ID` | DOUBLE | NOT NULL |  | A number value of the additional information for the ops exception order. |
+| 5 | `FIELD_MEANING` | VARCHAR(40) |  |  | The description of the type of additional information being stored for the ops exception order. |
+| 6 | `FIELD_NBR` | DOUBLE |  |  | A number value of the additional information for the ops exception order. |
+| 7 | `PARENT_ID` | DOUBLE | NOT NULL | FK→ | Identifies the ops exception order that the detail information is for. |
+| 8 | `SEQUENCE` | DOUBLE | NOT NULL |  | This field is used in combination with the parent id to make the primary key for this table. |
+| 9 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 10 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 11 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 12 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+| 13 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. The UPDT family of columns are typically used for housekeeping and external system process and should never be depended on for solution specific logic. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Joins out — this table references (published FKs)
+
+| Column | → References | Parent column |
+|--------|--------------|---------------|
+| `ACTION_FLAG` | [AP_OPS_EXCEPTION](AP_OPS_EXCEPTION.md) | `ACTION_FLAG` |
+| `PARENT_ID` | [AP_OPS_EXCEPTION](AP_OPS_EXCEPTION.md) | `PARENT_ID` |
+

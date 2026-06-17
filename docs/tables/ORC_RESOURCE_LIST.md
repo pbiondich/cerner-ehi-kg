@@ -1,0 +1,40 @@
+# ORC_RESOURCE_LIST
+
+> Used to store relationships between order catalog items and the service resources that perform the work for the task/assays associated to the order catalog item
+
+**Description:** Order catalog/service resource list  
+**Table type:** REFERENCE  
+**Primary key:** _(not published — see note)_  
+**Columns:** 16
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `ACTIVE_IND` | DOUBLE |  |  | The table row is active or inactive. A row is generally active unless it is in an inactive state such as logically deleted, combined away, pending purge, etc. |
+| 2 | `ACTIVE_STATUS_CD` | DOUBLE | NOT NULL |  | Indicates the status of the row itself (not the data in the row) such as active, inactive, combined away, pending purge, etc. |
+| 3 | `ACTIVE_STATUS_DT_TM` | DATETIME |  |  | The date and time that the active_status_cd was set. |
+| 4 | `ACTIVE_STATUS_PRSNL_ID` | DOUBLE | NOT NULL |  | The person who caused the active_status_cd to be set or change. |
+| 5 | `BEG_EFFECTIVE_DT_TM` | DATETIME | NOT NULL |  | The date and time for which this table row becomes effective. Normally, this will be the date and time the row is added, but could be a past or future date and time. |
+| 6 | `CATALOG_CD` | DOUBLE | NOT NULL | FK→ | Stores the code value for the order catalog item that is associated with the service resource |
+| 7 | `END_EFFECTIVE_DT_TM` | DATETIME | NOT NULL |  | The date/time after which the row is no longer valid as active current data. This may be valued with the date that the row became inactive. |
+| 8 | `PRIMARY_IND` | DOUBLE |  |  | Indicates if the service resource will be the primary one for the order catalog item specified and, as such, will be the default service resource to be routed to if all other loading logic fails |
+| 9 | `SCRIPT_NAME` | VARCHAR(50) |  |  | Name of script to be used for loading logic that is required by a site that is not provided for through the calendar logic |
+| 10 | `SEQUENCE` | DOUBLE |  |  | Used to determine the sequence by which service resource will be tested for routing logic. Once the routing server has found a match by sequence, loading will occur and no other service resources will be tested, so the rule is to give the exceptions a lower sequence |
+| 11 | `SERVICE_RESOURCE_CD` | DOUBLE | NOT NULL |  | Used to store the code for the service resource that is related to the order catalog item |
+| 12 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. |
+| 13 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. |
+| 14 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. |
+| 15 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. |
+| 16 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+
+## Joins out — this table references (published FKs)
+
+| Column | → References | Parent column |
+|--------|--------------|---------------|
+| `CATALOG_CD` | [ORDER_CATALOG](ORDER_CATALOG.md) | `CATALOG_CD` |
+

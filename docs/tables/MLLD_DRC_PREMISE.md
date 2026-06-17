@@ -1,0 +1,75 @@
+# MLLD_DRC_PREMISE
+
+> This table is a staging table used to help facilitate the MLTM tables load process. It is not intended for client use or use by any other process.
+
+**Description:** MLLD_DRC_PREMISE  
+**Table type:** REFERENCE  
+**Primary key:** _(not published — see note)_  
+**Columns:** 57
+
+[← index](../index.md)
+
+## Columns
+
+| # | Column | Type | Null? | Flags | Definition |
+|--:|--------|------|:-----:|-------|------------|
+| 1 | `AGE_HIGH_NBR` | DOUBLE | NOT NULL |  | AGE HIGH NUMBER |
+| 2 | `AGE_LOW_NBR` | DOUBLE | NOT NULL |  | AGE LOW NUMBER |
+| 3 | `AGE_OPERATOR_TXT` | VARCHAR(25) | NOT NULL |  | AGE OPERATOR TEXT |
+| 4 | `AGE_UNIT_CKI` | VARCHAR(50) | NOT NULL |  | AGE UNIT CKI COLUMN |
+| 5 | `AGE_UNIT_DISP` | VARCHAR(40) | NOT NULL |  | AGE UNIT DISPLAY |
+| 6 | `COMMENT_TXT` | VARCHAR(255) |  |  | COMMENT TEXT |
+| 7 | `CONDITION1_DESC` | VARCHAR(50) |  |  | FIRST CONDITION DESCRIPTION |
+| 8 | `CONDITION1_ID` | DOUBLE | NOT NULL |  | FIRST CONDITION ID |
+| 9 | `CONDITION2_DESC` | VARCHAR(50) |  |  | SECOND CONDITION DESCRIPTION |
+| 10 | `CONDITION2_ID` | DOUBLE | NOT NULL |  | SECOND CONDITION ID |
+| 11 | `CORRECTED_GEST_AGE_CKI` | VARCHAR(50) | NOT NULL |  | CORRECTED GESTATION AGE CKI |
+| 12 | `CORRECTED_GEST_AGE_HIGH_NBR` | DOUBLE | NOT NULL |  | CORRECTED GEST AGE HIGH NUMBER |
+| 13 | `CORRECTED_GEST_AGE_LOW_NBR` | DOUBLE | NOT NULL |  | CORRECTED GEST AG LOW NUMBER |
+| 14 | `CORRECTED_GEST_AGE_OPER_TXT` | VARCHAR(25) | NOT NULL |  | CORRECTED GEST AGE OPER TEXT |
+| 15 | `CORRECTED_GEST_AGE_UNIT_DISP` | VARCHAR(40) | NOT NULL |  | CORRECTED GEST AGE UNIT DISPLAY |
+| 16 | `CORRECTED_GEST_AGE_UNIT_ID` | DOUBLE | NOT NULL |  | CORRECTED GESTATION AGE UNIT ID |
+| 17 | `DOSE_RANGE_CHECK_ID` | DOUBLE | NOT NULL |  | DOSE RANGE CHECK IDENTIFIER |
+| 18 | `DOSE_RANGE_TYPE` | VARCHAR(100) | NOT NULL |  | DOSE RANGE TYPE COLUMN |
+| 19 | `DOSE_RANGE_TYPE_ID` | DOUBLE | NOT NULL |  | DOSE RANGE TYPE IDENTIFIER |
+| 20 | `DOSE_UNIT_CD` | DOUBLE | NOT NULL |  | DOSE UNIT CODE |
+| 21 | `DOSE_UNIT_CKI` | VARCHAR(50) | NOT NULL |  | DOSE UNIT CKI |
+| 22 | `DOSE_UNIT_DISP` | VARCHAR(40) | NOT NULL |  | DOSE UNIT DISPLAY |
+| 23 | `DOSE_UNIT_ID` | DOUBLE | NOT NULL |  | DOSE UNIT IDENTIFIER |
+| 24 | `DRC_CKI` | VARCHAR(100) | NOT NULL |  | DRC CKI COLUMN |
+| 25 | `DRC_DOSE_RANGE_ID` | DOUBLE | NOT NULL |  | DRC DOSE RANGE IDENTIFIER |
+| 26 | `DRC_IDENTIFIER` | VARCHAR(45) | NOT NULL |  | DRC IDENTIFIER |
+| 27 | `DRC_PREMISE_ID` | DOUBLE | NOT NULL |  | DRC PREMISE IDENTIFIER |
+| 28 | `GENDER_FLAG` | DOUBLE | NOT NULL |  | GENDER FLAG VALUES |
+| 29 | `GROUPER_ID` | DOUBLE | NOT NULL |  | GROUPER IDENTIFIER |
+| 30 | `GROUPER_NAME` | VARCHAR(100) | NOT NULL |  | GROUPER NAME |
+| 31 | `HIGH_DOSE_VALUE` | DOUBLE | NOT NULL |  | HIGH DOSE VALUE COL |
+| 32 | `LIVER_DESC` | VARCHAR(50) | NOT NULL |  | LIVER DISCRIPTION |
+| 33 | `LOW_DOSE_VALUE` | DOUBLE | NOT NULL |  | LOW DOSE VALUE |
+| 34 | `MULTUM_CASE_ID` | DOUBLE | NOT NULL |  | MULTUM CASE IDENTIFIER |
+| 35 | `PARENT_PREMISE_ID` | DOUBLE | NOT NULL |  | PARENT PREMISE IDENTIFIER |
+| 36 | `PEDS_IND` | DOUBLE | NOT NULL |  | PEDS INDICATOR |
+| 37 | `RENAL_CONDITION_TXT` | VARCHAR(40) | NOT NULL |  | RENAL CONDITION TEXT |
+| 38 | `RENAL_HIGH_VALUE` | DOUBLE | NOT NULL |  | RENAL HIGH VALUE AMT |
+| 39 | `RENAL_LOW_VALUE` | DOUBLE | NOT NULL |  | RENAL LOW VALUE AMT |
+| 40 | `RENAL_OPERATOR_TXT` | VARCHAR(25) | NOT NULL |  | RENAL OPERATOR TEXT |
+| 41 | `RENAL_UNIT_CKI` | VARCHAR(50) | NOT NULL |  | RENAL UNIT CKI |
+| 42 | `RENAL_UNIT_DISP` | VARCHAR(40) | NOT NULL |  | RENAL UNIT DISPLAY |
+| 43 | `RENAL_UNIT_ID` | DOUBLE | NOT NULL |  | RENAL UNIT IDENTIFIER |
+| 44 | `ROUTE_DISP` | VARCHAR(40) | NOT NULL |  | ROUTE DISPLAY |
+| 45 | `ROUTE_ID` | DOUBLE | NOT NULL |  | ROUTE IDENTIFIER |
+| 46 | `SMOKER_FLAG` | DOUBLE | NOT NULL |  | SMOKER FLAG |
+| 47 | `UPDT_APPLCTX` | DOUBLE | NOT NULL |  | The application context number from the record info block. |
+| 48 | `UPDT_CNT` | DOUBLE | NOT NULL |  | Set to 0 on insert. Incremented by 1 on update. Used to recognize update conflict where data in a row updated by one application is at risk of being lost by a second application attempting to update the row. |
+| 49 | `UPDT_DT_TM` | DATETIME | NOT NULL |  | The date and time the row was last inserted or updated. |
+| 50 | `UPDT_ID` | DOUBLE | NOT NULL |  | The person_id of the person from the personnel table (prsnl) that caused the last insert or update of the row in the table. |
+| 51 | `UPDT_TASK` | DOUBLE | NOT NULL |  | The registered (assigned) task number for the process that inserted or updated the row. |
+| 52 | `WEIGHT_HIGH_VALUE` | DOUBLE | NOT NULL |  | WEIGHT HIGH VALUE AMT |
+| 53 | `WEIGHT_LOW_VALUE` | DOUBLE | NOT NULL |  | WEIGHT LOW VALUE AMT |
+| 54 | `WEIGHT_OPERATOR_TXT` | VARCHAR(25) | NOT NULL |  | WEIGHT OPERATOR TEXT |
+| 55 | `WEIGHT_UNIT_CKI` | VARCHAR(50) | NOT NULL |  | WEIGHT UNIT CKI COL |
+| 56 | `WEIGHT_UNIT_DISP` | VARCHAR(40) | NOT NULL |  | WEIGHT UNIT DISPLAY |
+| 57 | `WEIGHT_UNIT_ID` | DOUBLE | NOT NULL |  | WEIGHT UNIT IDENTIFIER |
+
+_Flags: PK = primary key · FK→ = published foreign key (see Joins out)._
+

@@ -12,8 +12,10 @@ This repo turns ~6,600 HTML table reports into:
 
 - a flat **structured dataset** (`data/schema.jsonl`),
 - an explicit **foreign-key edge list** (`data/foreign_keys.jsonl`),
-- an **RDF / Turtle** knowledge graph (`graph/cerner_ehi.ttl`), and
-- a **GraphML** property graph (`graph/cerner_ehi.graphml`).
+- an **RDF / Turtle** knowledge graph (`graph/cerner_ehi.ttl`),
+- a **GraphML** property graph (`graph/cerner_ehi.graphml`), and
+- a **browsable markdown data dictionary** ([`docs/`](docs/index.md)) — one cross-linked
+  page per table — for reading the schema directly on GitHub.
 
 ## Source & version
 
@@ -62,6 +64,19 @@ pip install -r requirements.txt
 python build_cerner_kg.py --src /path/to/EHI_MYSQL_DATA_MODEL/dm --out .
 #   --src points at the unzipped data-model folder (the one containing html/)
 #   --no-descriptions omits Oracle's prose definitions from the .ttl/.graphml
+```
+
+## Data dictionary (markdown)
+
+A browsable rendering of the whole model lives in [`docs/`](docs/index.md) and renders
+natively on GitHub. [`docs/index.md`](docs/index.md) gives stats, the top hubs, and an A–Z
+index; each `docs/tables/<TABLE>.md` page has the table definition, table type, primary key,
+the full column list (type, nullability, PK/FK flags, definition), **Joins out** (published
+FKs with the exact parent column), and **Referenced by** (inbound FKs, capped at 300/page).
+Regenerate (≈0.5 s) with:
+
+```bash
+python build_cerner_docs.py --out .
 ```
 
 ## Known limitations
