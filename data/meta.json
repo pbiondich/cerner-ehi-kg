@@ -1,0 +1,8 @@
+{
+  "source": "Oracle Health \u2014 Cerner Millennium Data Model Reports (Single Patient EHI Export)",
+  "parsed_at": "2026-06-17T17:20:50.011376+00:00",
+  "n_tables": 6620,
+  "n_columns": 130279,
+  "keys": "explicit (published PK/FK)",
+  "descriptions_in_graph": true
+}

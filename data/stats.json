@@ -1,0 +1,130 @@
+{
+  "tables": 6620,
+  "columns_total": 130279,
+  "avg_columns_per_table": 19.7,
+  "largest_table": [
+    "LH_E_VTE_2016_METRICS",
+    378
+  ],
+  "tables_with_primary_key": 2016,
+  "explicit_foreign_key_edges": 18405,
+  "fk_edges_to_unknown_table": 0,
+  "table_type_distribution": [
+    [
+      "REFERENCE",
+      3555
+    ],
+    [
+      "ACTIVITY",
+      3065
+    ]
+  ],
+  "top_referenced_tables": [
+    [
+      "LH_D_METRIC",
+      2152
+    ],
+    [
+      "PRSNL",
+      1038
+    ],
+    [
+      "LH_D_FACILITY",
+      728
+    ],
+    [
+      "LH_D_NURSE_UNIT",
+      722
+    ],
+    [
+      "LH_D_BUILDING",
+      720
+    ],
+    [
+      "PERSON",
+      486
+    ],
+    [
+      "CODE_VALUE",
+      459
+    ],
+    [
+      "ENCOUNTER",
+      425
+    ],
+    [
+      "LH_D_PERSON",
+      380
+    ],
+    [
+      "ORGANIZATION",
+      373
+    ],
+    [
+      "LH_D_PERSONNEL",
+      364
+    ],
+    [
+      "LH_D_ENCNTR_TYPE",
+      350
+    ],
+    [
+      "LH_D_ADMIT_SRC",
+      332
+    ],
+    [
+      "LH_D_ADMIT_TYPE",
+      324
+    ],
+    [
+      "LONG_TEXT",
+      282
+    ],
+    [
+      "LH_D_BR_HCO",
+      276
+    ],
+    [
+      "LH_D_DISCH_DISP",
+      276
+    ],
+    [
+      "LH_D_BR_CCN",
+      274
+    ],
+    [
+      "LOCATION",
+      273
+    ],
+    [
+      "LOGICAL_DOMAIN",
+      222
+    ]
+  ],
+  "top_data_types": [
+    [
+      "DOUBLE",
+      87602
+    ],
+    [
+      "DATETIME",
+      21629
+    ],
+    [
+      "VARCHAR",
+      20407
+    ],
+    [
+      "CHAR",
+      491
+    ],
+    [
+      "LONGTEXT",
+      91
+    ],
+    [
+      "LONGBLOB",
+      59
+    ]
+  ]
+}
